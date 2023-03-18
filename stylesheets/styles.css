@@ -1,0 +1,24 @@
+canvas {
+  border: 2px solid black;
+}
+body {
+  background-image: url('../image/initial-game-page.jpeg');
+  height: 50px;
+}
+#start {
+  padding: 20px 40px;
+  margin: 400px 660px;
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  background-color: #ff5500;
+  border-radius: 20px;
+}
+h1 {
+  color: white;
+  margin: 50px;
+}
+
+.hidden {
+  display: none;
+}
