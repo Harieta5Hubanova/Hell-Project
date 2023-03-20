@@ -29,6 +29,8 @@ let randomTitle = getRandomMovie(bestMovies);
 
 let dashedName = updateName();
 
+let numberOfGuesses = 5;
+
 function updateCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(gamePage, 0, 0, gamePage.width, gamePage.height);
@@ -36,6 +38,8 @@ function updateCanvas() {
   ctx.font = '80px Arial';
 
   ctx.fillText(dashedName, 450, 300);
+  ctx.font = '50px Arial';
+  ctx.fillText(`Guesses: ${numberOfGuesses}`, 1000, 50);
 }
 
 function actualGameBackground() {
@@ -57,28 +61,39 @@ function updateName() {
 }
 
 document.addEventListener('keydown', event => {
-  if (randomTitle.includes(event.key)) {
-    console.log('MATCHED', event.key);
-    const selectedLetter = event.key.toUpperCase();
-    const indexes = [];
+  if (numberOfGuesses > 0) {
+    if (randomTitle.includes(event.key)) {
+      console.log('MATCHED', event.key);
+      const selectedLetter = event.key.toUpperCase();
+      const indexes = [];
 
-    for (let i = 0; i < randomTitle.length; i++) {
-      if (randomTitle[i].toUpperCase() === selectedLetter) {
-        indexes.push(i);
+      for (let i = 0; i < randomTitle.length; i++) {
+        if (randomTitle[i].toUpperCase() === selectedLetter) {
+          indexes.push(i);
+        }
       }
-      if (!randomTitle[i] === selectedLetter) {
-        ctx.fillText(X, 800, 0);
-      }
+
+      dashedName = dashedName.split('');
+
+      indexes.forEach(letter => {
+        dashedName[letter] = selectedLetter;
+      });
+
+      dashedName = dashedName.join('');
+
+      updateCanvas();
+    } else {
+      numberOfGuesses -= 1;
+      updateCanvas();
     }
-
-    dashedName = dashedName.split('');
-
-    indexes.forEach(letter => {
-      dashedName[letter] = selectedLetter;
-    });
-
-    dashedName = dashedName.join('');
-
-    updateCanvas();
   }
+
+  gameOver();
 });
+function gameOver() {
+  if (numberOfGuesses === 0) {
+    actualGameBackground();
+    ctx.font = '100px Arial';
+    ctx.fillText('GAME OVER', 500, 300);
+  }
+}
