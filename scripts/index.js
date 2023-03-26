@@ -4,6 +4,16 @@ const ctx = canvas.getContext('2d');
 const gamePage = new Image();
 gamePage.src = '../image/game-page.jpeg';
 const background = new Image();
+const errorAudio = new Audio();
+errorAudio.src = '../sounds/error.mp3';
+const correctAudio = new Audio();
+correctAudio.src = '../sounds/correct.mp3';
+const victoryAudio = new Audio();
+victoryAudio.src = '../sounds/victorysound.mp3';
+
+//const initialAudio = new Audio();
+//initialAudio.src = '../sounds/game-of-thrones-theme-song-ringtone-30782.mp3';
+//initialAudio.volume = 0.1;
 
 function getRandomMovie(bestMovies) {
   const randomIndex = Math.floor(Math.random() * bestMovies.length);
@@ -21,6 +31,7 @@ const element = document.getElementById('start');
 element.addEventListener('click', () => {
   console.log('click');
   canvas.classList.remove('hidden');
+  //initialAudio.play();
   actualGameBackground();
   updateCanvas();
 });
@@ -36,10 +47,11 @@ function updateCanvas() {
     console.log('here');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(background, 0, 0, 1500, 700);
+    victoryAudio.play();
   } else {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(gamePage, 0, 0, gamePage.width, gamePage.height);
-    ctx.font = '60px Arial';
+    ctx.font = '50px Arial';
 
     ctx.fillText(dashedName, 450, 300);
     ctx.font = '50px Arial';
@@ -85,10 +97,11 @@ document.addEventListener('keydown', event => {
       });
 
       dashedName = dashedName.join('');
-
+      correctAudio.play();
       updateCanvas();
     } else {
       numberOfGuesses -= 1;
+      errorAudio.play();
       updateCanvas();
     }
   }
@@ -104,6 +117,7 @@ function gameOver() {
 function gameWon() {
   if (!dashedName.split('').includes('-')) {
     background.src = randomTitle.src;
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(background, 0, 0, 1500, 700);
   }
