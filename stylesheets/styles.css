@@ -7,7 +7,7 @@ body {
 }
 #start {
   padding: 20px 40px;
-  margin: 400px 660px;
+  margin: 160px 600px;
   font-size: 15px;
   font-weight: bold;
   color: white;
@@ -16,9 +16,18 @@ body {
 }
 h1 {
   color: white;
-  margin: 50px;
+  margin: 30px 20px;
+  text-shadow: 2px 4px 4px white;
 }
-
+div {
+  color: white;
+  margin: 30px 20px;
+  font-size: 20px;
+  text-shadow: 2px 4px 4px white;
+}
 .hidden {
   display: none;
+}
+li {
+  margin: 10px;
 }

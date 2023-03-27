@@ -30,6 +30,7 @@ const element = document.getElementById('start');
 
 element.addEventListener('click', () => {
   console.log('click');
+  element.style.display = 'none';
   canvas.classList.remove('hidden');
   //initialAudio.play();
   actualGameBackground();
@@ -46,16 +47,16 @@ function updateCanvas() {
   if (!dashedName.split('').includes('-')) {
     console.log('here');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(background, 0, 0, 1500, 700);
+    ctx.drawImage(background, 0, 0, 1000, 700);
     victoryAudio.play();
   } else {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(gamePage, 0, 0, gamePage.width, gamePage.height);
     ctx.font = '50px Arial';
 
-    ctx.fillText(dashedName, 450, 300);
-    ctx.font = '50px Arial';
-    ctx.fillText(`Guesses: ${numberOfGuesses}`, 1000, 50);
+    ctx.fillText(dashedName, 360, 300);
+    ctx.font = '40px Arial';
+    ctx.fillText(`Guesses: ${numberOfGuesses}`, 950, 50);
   }
 }
 
@@ -122,10 +123,3 @@ function gameWon() {
     ctx.drawImage(background, 0, 0, 1500, 700);
   }
 }
-
-//function gameWon() {
-//if (randomTitle === 'pulp   fiction') {
-// ctx.clearRect(0, 0, canvas.width, canvas.length);
-// ctx.drawImage((src = '/image/PulpFiction.jpeg'), 0, 0, 1500, 700);
-//}
-//}
