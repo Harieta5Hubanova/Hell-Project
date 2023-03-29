@@ -18,7 +18,12 @@ const bestMovies = [
     src: '../image/the blair witch project.jpg'
   },
   {
-    title: 'eternal   sunshine   of   the   spotles   mind',
-    src: '../image/eternalSunshineOfTheSpotlessMind.jpeg'
-  }
+    title: 'bicycle   thieves',
+    src: '../image/Bicycle Thieves.jpg'
+  },
+  { title: 'the   godfather', src: '../image/The Godfather.jpg' },
+  { title: 'blade   runner', src: '../image/Blade Runner.jpg' },
+  { title: 'mulholand   drive', src: '../image/Mulholand Drive.jpg' },
+  { title: 'the   dark   knight', src: '../image/The Dark Knight.jpg' },
+  { title: 'under   the   skin', src: '../image/Under the skin.jpg' }
 ];
